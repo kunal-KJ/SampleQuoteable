@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    //<link rel="stylesheet" href="main.css">
+<style>@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300&family=Taviraj&display=swap');
+
+    *{
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: 'Poppins' ,sans-serif;
+    }
+    
+    body{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 100vh;
+        background-color:cornflowerblue ;
+    }
+    
+    .wrapper{
+        background-color: #fff;
+        width: 605px;
+        border-radius: 15px;
+        padding: 30px 30px 25px;
+    }
+    
+    .wrapper header{
+        font-size: 35px;
+        font-weight: 600;
+        text-align: center;
+    }
+    
+    .wrapper .content{
+        margin: 35px 0;
+    }
+    
+    .content .quote-area{
+        display: flex;
+        justify-content: center;
+    }
+    .quote-area i{
+        font-size: 15px;
+    }
+    .quote-area i:first-child{
+        margin: 3px 10px 0 0 ;
+    }
+    .quote-area i:last-child{
+        display: flex;
+        align-items: flex-end;
+    margin: 0 0 3px 10px  ;
+    }
+    .quote-area .quote{
+        font-size: 22px;
+        text-align: center;
+        word-break: break-all;
+    
+    }
+    
+    .content .author{
+        display: flex;
+        font-size: 18px;
+        font-style: italic;
+        margin-top :20px; 
+        justify-content: flex-end;
+    }
+    
+    .author span:first-child{
+        margin: -7px 5px 0 0 ;
+        font-family: monospace;
+    }
+    
+    .wrapper .button {
+        border-top: 1px solid #ccc;
+    }
+    .button .feature{
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-top: 20px;
+    }
+    
+    .feature ul{
+        display: flex;
+    }
+    
+    .feature ul li{
+        list-style: none;
+        margin: 0 5px;
+        height: 47px;
+        width: 47px;
+        display: flex;
+        color:cornflowerblue;
+        align-items: center;
+        justify-content: center;
+        border-radius: 50%;
+        border :2px solid cornflowerblue;
+    }
+    
+    .feature button{
+        border: none;
+        outline: none;
+        border-radius: 30px;
+        cursor: pointer;
+        font-size: 16px;
+        color: #fff;
+        background-color: cornflowerblue;
+        padding: 13px 22px;
+    }</style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    
+
+    <title> Quote app in javaScript</title>
+</head>
+<body>
+    <div class="wrapper">
+        <header>Quote of the Day</header>
+        <div class="content">
+            <div class="quote-area">
+                <i class="fas fa-quote-left"></i>
+                <p class="quote"> Namaste </p>
+                <i class="fas fa-quote-right"></i>
+            </div>
+            <div class="author">
+                <span>__</span>
+            <span>Harry Poter</span>
+            </div>
+        </div>
+        <div class="button">
+            <div class="feature">
+                <ul>
+                    <li class="sound"> <i class="fas fa-volume-up"></i></li>
+                    <li class="copy"> <i class="fas fa-copy"></i></li>
+                    <li class="twitter"> <i class="fab fa-twitter "></i></li>
+                </ul>
+                <button onclick="loadQuote()"> New Quote </button>
+            </div>
+        </div>
+    </div>
+    <script >
+    const quote =document.querySelector(".quote");
+        const btn = document.querySelector("button");
+        const author =document.querySelector(".author");
+        
+        const api ="https://api.quotable.io/random";
+        
+        function loadQuote(){
+        
+            fetch (api)
+            .then(response =>{
+              
+                return response.json();
+            })
+            .then(data =>{
+                quote.textContent =data.content;
+                author.textContent =data.author;
+            })
+        
+            .catch(error =>{
+                console.log("Not able to fetch api !")
+            })
+        }
+        </script>
+</body>
+</html>
